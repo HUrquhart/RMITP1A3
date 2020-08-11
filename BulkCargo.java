@@ -1,3 +1,5 @@
+import java.io.PrintWriter;
+
 /**
  * Data class that stores information for a single Bulk Cargo Item,
  * two constructors one for direct instantiation and the second for persistence
@@ -37,6 +39,21 @@ public class BulkCargo extends Cargo {
 		return cubicMeters*transportationDistanceKm*super.getRate();
 	}
 
+	// writes a bulk cargo object to defined file
+	@Override
+	public void writeToFIle(PrintWriter pw) {
+		String str =  "";
+		str = "b\t";
+		str += getId() + "\t";
+		str += getCustomerName() + "\t";
+		str += getDestination() + "\t";
+		str += getPickupLocation() + "\t";
+		str += getTransportationDistanceKm() + "\t";
+		str += getVolume() + "\t";
+		pw.write(str + "\n");
+	}
+
+	// writes information to console on request
 	@Override
 	public void print() {
 		super.print();
@@ -44,6 +61,7 @@ public class BulkCargo extends Cargo {
 		System.out.printf("%-16s -> %.2f\n", "Volume (m^3)", cubicMeters);
 	}
 
+	// getters
 	public int getTransportationDistanceKm(){
 		return transportationDistanceKm;
 	}
