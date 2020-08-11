@@ -51,52 +51,10 @@ public class StageD {
 	private void writeToFile() throws IOException {
 		PrintWriter pw = new PrintWriter(new FileWriter("StageD.txt"));
 		for (int i = 0; i < cargoCounter; i++) {
-			Cargo item = cargo[i];
-
-			String str;
-			if (item instanceof RefrigeratedPackagedCargo) {
-				// concatenate a string for refrigerated cargo
-				str = "r\t";
-				str += getGString(item);
-				str += getPString(item);
-				str += ((RefrigeratedPackagedCargo) item).getIsFrozen() + "\t";
-			} else if (item instanceof PackagedCargo) {
-				// concatenate a string for packaged cargo
-				str = "p\t";
-				str += getGString(item);
-				str += getPString(item);
-			} else {
-				// concatenate a string for bulk cargo
-				str = "b\t";
-				str += getGString(item);
-				str += ((BulkCargo) item).getTransportationDistanceKm() + "\t";
-				str += ((BulkCargo) item).getVolume() + "\t";
-			}
-
-			pw.write(str + "\n");
+			cargo[i].writeToFIle(pw);
 		}
 		pw.flush();
 		pw.close();
-	}
-
-	// get common p/r string components for saving to file
-	private String getPString(Cargo item) {
-		String str = "" ;
-		str += ((PackagedCargo) item).getHeightCM() + "\t";
-		str += ((PackagedCargo) item).getWidthCM() + "\t";
-		str += ((PackagedCargo) item).getDepthCM() + "\t";
-		str += ((PackagedCargo) item).getWeightInGrams() + "\t";
-		return str;
-	}
-
-	// get general string components for saving to file
-	private String getGString(Cargo item) {
-		String str =  "";
-		str += item.getId() + "\t";
-		str += item.getCustomerName() + "\t";
-		str += item.getDestination() + "\t";
-		str += item.getPickupLocation() + "\t";
-		return str;
 	}
 
 	// reads contents from file specified and then saves it to the heap in the correct format
