@@ -41,7 +41,7 @@ public class BulkCargo extends Cargo {
 
 	// writes a bulk cargo object to defined file
 	@Override
-	public void writeToFIle(PrintWriter pw) {
+	public void writeToFile(PrintWriter pw) {
 		String str =  "";
 		str = "b\t";
 		str += getId() + "\t";

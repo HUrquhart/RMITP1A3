@@ -75,7 +75,7 @@ public class PackagedCargo extends Cargo {
 
 	// writes a packaged cargo object to defined file
 	@Override
-	public void writeToFIle(PrintWriter pw) {
+	public void writeToFile(PrintWriter pw) {
 		String str =  "";
 		str = "p\t";
 		str += getId() + "\t";

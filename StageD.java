@@ -51,7 +51,7 @@ public class StageD {
 	private void writeToFile() throws IOException {
 		PrintWriter pw = new PrintWriter(new FileWriter("StageD.txt"));
 		for (int i = 0; i < cargoCounter; i++) {
-			cargo[i].writeToFIle(pw);
+			cargo[i].writeToFile(pw);
 		}
 		pw.flush();
 		pw.close();

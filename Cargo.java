@@ -71,5 +71,5 @@ public abstract class Cargo {
 	}
 
 	// make each object responsible for writing to file
-	public abstract void writeToFIle(PrintWriter pw);
+	public abstract void writeToFile(PrintWriter pw);
 }

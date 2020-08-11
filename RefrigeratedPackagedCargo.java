@@ -34,7 +34,7 @@ public class RefrigeratedPackagedCargo extends PackagedCargo{
 
 	// writes a refrigerated packaged cargo object to defined file
 	@Override
-	public void writeToFIle(PrintWriter pw) {
+	public void writeToFile(PrintWriter pw) {
 		String str =  "";
 		str = "r\t";
 		str += getId() + "\t";
