@@ -11,8 +11,17 @@ public class RefrigeratedPackagedCargo extends PackagedCargo{
 	public RefrigeratedPackagedCargo(String name, String destination, String pickupLocation,
 									 int heightCM, int widthCM, int depthCM, int weightInGrams,
 									 boolean isFrozen) throws  IllegalArgumentException {
-		this(Cargo.getIdCounter(), name, destination,pickupLocation, heightCM, widthCM, depthCM,
-				weightInGrams, isFrozen);
+		this(
+				Cargo.getIdCounter(),
+				name,
+				destination,
+				pickupLocation,
+				heightCM,
+				widthCM,
+				depthCM,
+				weightInGrams,
+				isFrozen
+		);
 	}
 
 	public RefrigeratedPackagedCargo(int id, String name, String destination, String pickupLocation,
@@ -49,8 +58,7 @@ public class RefrigeratedPackagedCargo extends PackagedCargo{
 	// writes a refrigerated packaged cargo object to defined file
 	@Override
 	public void writeToFile(PrintWriter pw) {
-		String str =  "";
-		str = "r\t";
+		String str = "r\t";
 		str += getId() + "\t";
 		str += getCustomerName() + "\t";
 		str += getDestination() + "\t";

@@ -12,14 +12,21 @@ public class BulkCargo extends Cargo {
 	public BulkCargo(String customerName, String destination, String pickupLocation,
 					 double cubicMeters, int transportationDistanceKm)
 			throws IllegalArgumentException {
-		this(Cargo.getIdCounter(), customerName, destination, pickupLocation, cubicMeters, transportationDistanceKm);
+		this(
+				Cargo.getIdCounter(),
+				customerName,
+				destination,
+				pickupLocation,
+				cubicMeters,
+				transportationDistanceKm
+		);
 	}
 
 	public BulkCargo(int id, String customerName, String destination, String pickupLocation,
 					 double cubicMeters, int transportationDistanceKm)
 			throws IllegalArgumentException {
 		super(id, customerName, destination, pickupLocation);
-		if(cubicMeters >= 6.00){
+		if (cubicMeters >= 6.00) {
 			throw new IllegalArgumentException("Volume cannot be greater then 6m^3");
 		}
 		this.cubicMeters = cubicMeters;
@@ -27,7 +34,7 @@ public class BulkCargo extends Cargo {
 		super.setRate(.30);
 	}
 
-	public BulkCargo(String[] s) throws IllegalArgumentException{
+	public BulkCargo(String[] s) throws IllegalArgumentException {
 		this(
 				Integer.parseInt(s[1]),
 				s[2],
@@ -43,18 +50,18 @@ public class BulkCargo extends Cargo {
 	 * cubic meters there is (a double) and the number of kilometers it is going to be transported.
 	 * The cost of a load of bulk cargo is
 	 * the number of km * the number of cubic meters * the ‘bulk rate’ which is $0.30.
+	 *
 	 * @return total cost
 	 */
 	@Override
 	public double calculateCost() {
-		return cubicMeters*transportationDistanceKm*super.getRate();
+		return cubicMeters * transportationDistanceKm * super.getRate();
 	}
 
 	// writes a bulk cargo object to defined file
 	@Override
 	public void writeToFile(PrintWriter pw) {
-		String str =  "";
-		str = "b\t";
+		String str = "b\t";
 		str += getId() + "\t";
 		str += getCustomerName() + "\t";
 		str += getDestination() + "\t";
@@ -73,11 +80,11 @@ public class BulkCargo extends Cargo {
 	}
 
 	// getters
-	public int getTransportationDistanceKm(){
+	public int getTransportationDistanceKm() {
 		return transportationDistanceKm;
 	}
 
-	public double getVolume(){
+	public double getVolume() {
 		return cubicMeters;
 	}
 }

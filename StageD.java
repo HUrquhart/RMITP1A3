@@ -2,6 +2,7 @@
  * Main class and application logic can be found in this class for the application
  * this class separates out logic from data
  */
+
 import java.io.*;
 import java.util.*;
 
@@ -10,8 +11,7 @@ public class StageD {
 	private int cargoCounter;
 	private final Scanner scanner;
 
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 
 		// we can get the users
 
@@ -79,7 +79,7 @@ public class StageD {
 						System.err.println("There was an error, unknown object type");
 				}
 				cargoCounter++;
-			} catch (Exception i){
+			} catch (Exception i) {
 				System.err.println(i.getMessage());
 			}
 		}
@@ -135,10 +135,10 @@ public class StageD {
 		if (cargoCounter == cargo.length) {
 			throw new CargoException("Cargo area full, remove items first");
 		}
-		String name 		= promptForField("Customer Name");
-		String pickup 		= promptForField("Pickup Location");
-		String destination 	= promptForField("Destination");
-		int cType 			= getCargoType();
+		String name = promptForField("Customer Name");
+		String pickup = promptForField("Pickup Location");
+		String destination = promptForField("Destination");
+		int cType = getCargoType();
 
 		// intellij indicates that this switch could be replaced by an enhanced switch statement
 		switch (cType) {
@@ -186,10 +186,10 @@ public class StageD {
 
 	// to reduce repeated code we return an array containing ints needed by two helper fns
 	// [height, width, depth, weight]
-	private int[] packagedCargoPrompt(){
+	private int[] packagedCargoPrompt() {
 		int[] fields = new int[4];
 		System.out.print("How high (cm) is the item ? > ");
-		fields[0]= Integer.parseInt(scanner.nextLine());
+		fields[0] = Integer.parseInt(scanner.nextLine());
 		System.out.print("How wide (cm) is the item ? > ");
 		fields[1] = Integer.parseInt(scanner.nextLine());
 		System.out.print("How deep (cm) is the item ? > ");
@@ -226,7 +226,7 @@ public class StageD {
 
 	// this function allows us to remove a single item from the array of Cargo objects
 	public void removeCargoItem() {
-		if(cargoCounter > 0) {
+		if (cargoCounter > 0) {
 			// get the users desired object to remove
 			displayAllCargo();
 			System.out.print("Which cargo item(id) would you like to remove? > ");
@@ -250,7 +250,7 @@ public class StageD {
 				}
 				cargoCounter--;
 			}
-		}else{
+		} else {
 			System.err.println("No items exist. Cannot remove anything!");
 		}
 	}
@@ -270,15 +270,15 @@ public class StageD {
 	}
 
 	// Attempts to find a cargo item by id
-	public void lookupCargo(){
-		if(cargoCounter < 1){
+	public void lookupCargo() {
+		if (cargoCounter < 1) {
 			System.err.println("Cargo must be added to enable this feature");
-		}else{
+		} else {
 			System.out.print("Which cargo item(id) would you like to display > ");
 			int itemIndex = lookupCargoIndex(Integer.parseInt(scanner.nextLine()));
-			if(itemIndex < 0){
+			if (itemIndex < 0) {
 				System.err.println("Cargo Item does not exist");
-			}else{
+			} else {
 				cargo[itemIndex].print();
 				cargo[itemIndex].calculateCost();
 			}

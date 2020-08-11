@@ -15,7 +15,16 @@ public class PackagedCargo extends Cargo {
 	public PackagedCargo(String name, String destination, String pickupLocation,
 						 int heightCM, int widthCM, int depthCM, int weightInGrams) throws
 			IllegalArgumentException {
-		this(Cargo.getIdCounter(), name, destination, pickupLocation, heightCM, widthCM, depthCM, weightInGrams);
+		this(
+				Cargo.getIdCounter(),
+				name,
+				destination,
+				pickupLocation,
+				heightCM,
+				widthCM,
+				depthCM,
+				weightInGrams
+		);
 	}
 
 	public PackagedCargo(int id, String name, String destination, String pickupLocation,
@@ -89,8 +98,7 @@ public class PackagedCargo extends Cargo {
 	// writes a packaged cargo object to defined file
 	@Override
 	public void writeToFile(PrintWriter pw) {
-		String str =  "";
-		str = "p\t";
+		String str  = "p\t";
 		str += getId() + "\t";
 		str += getCustomerName() + "\t";
 		str += getDestination() + "\t";
