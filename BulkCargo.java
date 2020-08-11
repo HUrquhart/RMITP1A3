@@ -27,6 +27,17 @@ public class BulkCargo extends Cargo {
 		super.setRate(.30);
 	}
 
+	public BulkCargo(String[] s) throws IllegalArgumentException{
+		this(
+				Integer.parseInt(s[1]),
+				s[2],
+				s[3],
+				s[4],
+				Double.parseDouble(s[6]),
+				Integer.parseInt(s[5])
+		);
+	}
+
 	/**
 	 * Some cargo, such as wood chips, is ‘bulk cargo’. For this type, I need to record how many
 	 * cubic meters there is (a double) and the number of kilometers it is going to be transported.

@@ -58,49 +58,30 @@ public class StageD {
 	}
 
 	// reads contents from file specified and then saves it to the heap in the correct format
+
 	private Cargo[] readFile(Scanner scanner, int size) {
 		Cargo[] contents = new Cargo[size];
 		while (scanner.hasNext()) {
 			// read each line from the file
-			// depending on the first item in array assign each item to a different field
-			String line = scanner.nextLine();
-			String[] fields = line.split("\t");
-
-			// get the common fields
-			int i = Integer.parseInt(fields[1]);
-			String n = fields[2];    // name as a string
-			String dst = fields[3]; // destination
-			String p = fields[4];    // pickup location as a string
-
-			switch (fields[0].toLowerCase()) {
-				case "b":
-					int distance = Integer.parseInt(fields[5]);
-					double volume = Double.parseDouble(fields[6]);
-					// attempt to create a new item, note this should not error out
-					contents[cargoCounter] =
-							new BulkCargo(i, n, dst, p, volume, distance);
-					break;
-				case "p":
-					int h = Integer.parseInt(fields[5]); // height in cm
-					int w = Integer.parseInt(fields[6]); // width in cm
-					int d = Integer.parseInt(fields[7]); // depth in cm
-					int grams = Integer.parseInt(fields[8]); // weight in grams
-					contents[cargoCounter] =
-							new PackagedCargo(i, n, dst, p, h, w, d, grams);
-					break;
-				case "r":
-					h = Integer.parseInt(fields[5]); // height in cm
-					w = Integer.parseInt(fields[6]); // width in cm
-					d = Integer.parseInt(fields[7]); // depth in cm
-					grams = Integer.parseInt(fields[8]); // weight in grams
-					boolean f = Boolean.parseBoolean(fields[9]); // is it frozen?
-					contents[cargoCounter] =
-							new RefrigeratedPackagedCargo(i, n, dst, p, h, w, d, grams, f);
-					break;
-				default:
-					System.err.println("There was an error, too many rows in file");
+			String[] fields = scanner.nextLine().split("\t");
+			try {
+				switch (fields[0].toLowerCase()) {
+					case "b":
+						contents[cargoCounter] = new BulkCargo(fields);
+						break;
+					case "p":
+						contents[cargoCounter] = new PackagedCargo(fields);
+						break;
+					case "r":
+						contents[cargoCounter] = new RefrigeratedPackagedCargo(fields);
+						break;
+					default:
+						System.err.println("There was an error, too many rows in file");
+				}
+				cargoCounter++;
+			}catch (IllegalArgumentException i){
+				System.err.println(i.getMessage());
 			}
-			cargoCounter++;
 		}
 		return contents;
 	}

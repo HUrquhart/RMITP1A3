@@ -33,6 +33,19 @@ public class PackagedCargo extends Cargo {
 		super.setRate(0.15);
 	}
 
+	public PackagedCargo(String[] s) throws IllegalArgumentException{
+		this(
+				Integer.parseInt(s[1]),
+				s[2],
+				s[3],
+				s[4],
+				Integer.parseInt(s[5]),
+				Integer.parseInt(s[6]),
+				Integer.parseInt(s[7]),
+				Integer.parseInt(s[8])
+		);
+	}
+
 	@Override
 	public double calculateCost() {
 		// I calculate the ‘cubic weight’, which is the package height * width * depth
