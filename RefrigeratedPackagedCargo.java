@@ -1,3 +1,5 @@
+import java.io.PrintWriter;
+
 /**
  * Data class that stores information for a single Refrigerated Packaged Cargo Item,
  * two constructors one for direct instantiation and the second for persistence
@@ -22,11 +24,29 @@ public class RefrigeratedPackagedCargo extends PackagedCargo{
 		super.setRate(0.25);
 	}
 
+	// prints information to console upon request
 	@Override
 	public void print() {
 		super.print();
 		String f = (isFrozen)? "Yes " : "No";
 		System.out.printf("%-16s -> %s\n", "Frozen", f);
+	}
+
+	// writes a refrigerated packaged cargo object to defined file
+	@Override
+	public void writeToFIle(PrintWriter pw) {
+		String str =  "";
+		str = "r\t";
+		str += getId() + "\t";
+		str += getCustomerName() + "\t";
+		str += getDestination() + "\t";
+		str += getPickupLocation() + "\t";
+		str += getHeightCM() + "\t";
+		str += getWidthCM() + "\t";
+		str += getDepthCM() + "\t";
+		str += getWeightInGrams() + "\t";
+		str += getIsFrozen() + "\t";
+		pw.write(str + "\n");
 	}
 
 	public boolean getIsFrozen(){

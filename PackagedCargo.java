@@ -1,3 +1,5 @@
+import java.io.PrintWriter;
+
 /**
  * Data class that stores information for a single Packaged Cargo Item,
  * two constructors one for direct instantiation and the second for persistence
@@ -61,6 +63,7 @@ public class PackagedCargo extends Cargo {
 		return this.weightInGrams;
 	}
 
+	// prints information to console upon request
 	@Override
 	public void print() {
 		super.print();
@@ -68,5 +71,21 @@ public class PackagedCargo extends Cargo {
 		System.out.printf("%-16s -> %dcm\n", "Package Width", widthCM);
 		System.out.printf("%-16s -> %dcm\n", "Package Depth", heightCM);
 		System.out.printf("%-16s -> %dg\n", "Package Weight", weightInGrams);
+	}
+
+	// writes a packaged cargo object to defined file
+	@Override
+	public void writeToFIle(PrintWriter pw) {
+		String str =  "";
+		str = "p\t";
+		str += getId() + "\t";
+		str += getCustomerName() + "\t";
+		str += getDestination() + "\t";
+		str += getPickupLocation() + "\t";
+		str += getHeightCM() + "\t";
+		str += getWidthCM() + "\t";
+		str += getDepthCM() + "\t";
+		str += getWeightInGrams() + "\t";
+		pw.write(str + "\n");
 	}
 }
