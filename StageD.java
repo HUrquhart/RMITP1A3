@@ -10,7 +10,8 @@ public class StageD {
 	private int cargoCounter;
 	private final Scanner scanner;
 
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 
 		// we can get the users
 
@@ -58,7 +59,6 @@ public class StageD {
 	}
 
 	// reads contents from file specified and then saves it to the heap in the correct format
-
 	private Cargo[] readFile(Scanner scanner, int size) {
 		Cargo[] contents = new Cargo[size];
 		while (scanner.hasNext()) {
@@ -76,10 +76,10 @@ public class StageD {
 						contents[cargoCounter] = new RefrigeratedPackagedCargo(fields);
 						break;
 					default:
-						System.err.println("There was an error, too many rows in file");
+						System.err.println("There was an error, unknown object type");
 				}
 				cargoCounter++;
-			}catch (IllegalArgumentException i){
+			} catch (Exception i){
 				System.err.println(i.getMessage());
 			}
 		}
