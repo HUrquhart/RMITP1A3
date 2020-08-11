@@ -1,3 +1,5 @@
+import java.io.PrintWriter;
+
 /**
  * Data class that stores information for a single Cargo Item,
  * this class must be extended as it is abstract
@@ -67,4 +69,7 @@ public abstract class Cargo {
 	public static int getIdCounter() {
 		return idCounter;
 	}
+
+	// make each object responsible for writing to file
+	public abstract void writeToFIle(PrintWriter pw);
 }
